@@ -1,2 +1,0 @@
-# linkbulb
-Created with CodeSandbox
