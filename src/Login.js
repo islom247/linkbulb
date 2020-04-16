@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import axios from "axios";
 import "./styles.css";
 class Login extends Component {
   state = {
@@ -11,7 +12,17 @@ class Login extends Component {
       [e.target.id]: e.target.value
     });
   };
-  handleSubmit = e => {};
+  handleSubmit = e => {
+    e.preventDefault();
+    axios.post("url-goes-here", this.state).then(
+      response => {
+        console.log(response.data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  };
 
   render() {
     return (
