@@ -104,3 +104,10 @@ textarea {
   box-shadow: 0 1px 0 0 #1d5dc4 !important;
   color: black;
 }
+#tos {
+  color: #0d47a1;
+}
+#error {
+  font-size: 15px;
+  color: red;
+}
