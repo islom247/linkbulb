@@ -4,6 +4,8 @@ import Navbar from "./Navbar";
 import Login from "./Login";
 import Register from "./Register";
 import Bhome from "./Bhome";
+import History from "./History";
+
 import "./styles.css";
 
 class App extends Component {
@@ -16,6 +18,7 @@ class App extends Component {
             <Route exact path="/" component={Bhome} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/history" component={History} />
           </Switch>
         </div>
       </BrowserRouter>

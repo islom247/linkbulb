@@ -11,6 +11,7 @@ class Bhome extends Component {
               className="url"
               onChange={this.handleChange}
               placeholder="Enter your link"
+              required
             />
           </div>
           <div className="center">
