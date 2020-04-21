@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LoggedOutLinks from "./LoggedOutLinks";
+import LoggedInLinks from "./LoggedInLinks";
 const Navbar = props => {
-  const links = <LoggedOutLinks />;
+  const links = (
+    <div>
+      <LoggedOutLinks />
+      <LoggedInLinks />
+    </div>
+  );
   return (
     <div className="navbar-fixed">
       <nav className="nav-wrapper yellow darken-3">
