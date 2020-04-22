@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import register from "./store/actions/authActions";
+import { register } from "./store/actions/authActions";
 import "./styles.css";
 class Login extends Component {
   state = {

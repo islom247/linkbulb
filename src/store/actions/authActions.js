@@ -1,12 +1,12 @@
 import axios from "axios";
 export const login = credentials => {
-  axios.post("url-goes-here", this.state).then(
-    response => {
-      console.log(response.data);
-    },
-    error => {
-      console.log(error);
-    }
-  );
+  return dispatch => {
+    axios
+      .post("url-goes-here", this.state)
+      .then(dispatch({ type: "LOGIN_SUCCESS" }))
+      .catch(err => {
+        dispatch({ type: "LOGIN_ERROR", err });
+      });
+  };
 };
 export const register = newUser => {};

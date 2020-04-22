@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./styles.css";
 import { connect } from "react-redux";
-import shorten from "./store/actions/authActions";
+import { shorten } from "./store/actions/linkActions";
 class Bhome extends Component {
   state = {
     url: "",
