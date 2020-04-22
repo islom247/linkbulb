@@ -1,6 +1,21 @@
 import React, { Component } from "react";
 import "./styles.css";
+import { connect } from "react-redux";
+import shorten from "./store/actions/authActions";
 class Bhome extends Component {
+  state = {
+    url: "",
+    custom: ""
+  };
+  handleChange = e => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  };
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.shorten(this.state);
+  };
   render() {
     return (
       <div className="container url-input">
@@ -8,6 +23,7 @@ class Bhome extends Component {
           <div className="center">
             <input
               type="url"
+              id="url"
               className="url"
               onChange={this.handleChange}
               placeholder="Enter your link"
@@ -35,4 +51,12 @@ class Bhome extends Component {
     );
   }
 }
-export default Bhome;
+const mapDispatchToProps = dispatch => {
+  return {
+    shorten: link => dispatch(shorten(link))
+  };
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(Bhome);

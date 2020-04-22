@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { login } from "./store/actions/authActions";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "./styles.css";
@@ -14,6 +16,7 @@ class Login extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
+    this.props.login(this.state);
     axios.post("url-goes-here", this.state).then(
       response => {
         console.log(response.data);
@@ -56,4 +59,17 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+const mapStateToProps = state => {
+  return {
+    authError: state.auth.authError
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    login: credentials => dispatch(login(credentials))
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

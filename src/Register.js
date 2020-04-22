@@ -1,33 +1,23 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import register from "./store/actions/authActions";
 import "./styles.css";
 class Login extends Component {
   state = {
     email: "",
     password: "",
-    error: ""
+    repassword: "",
+    username: ""
   };
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
     });
-    if (e.target.checked) {
-      this.setState({
-        error: ""
-      });
-    }
   };
   handleSubmit = e => {
     e.preventDefault();
-    if (!document.getElementById("tos").checked) {
-      this.setState({
-        error: "You should agree to terms of services to register!"
-      });
-    } else {
-      this.setState({
-        error: ""
-      });
-    }
+    this.props.register(this.state);
   };
 
   render() {
@@ -67,7 +57,12 @@ class Login extends Component {
               </div>
               <div className="left-align">
                 <label>
-                  <input type="checkbox" className="filled-in" />
+                  <input
+                    type="checkbox"
+                    className="filled-in"
+                    required
+                    oninvalid="this.setCustomValidity('You should agree to terms of services to proceed!')"
+                  />
                   <span>
                     <a id="tos" href="http://www.google.com">
                       I agree to the terms of services
@@ -80,9 +75,6 @@ class Login extends Component {
                   Register
                 </button>
               </div>
-              <div>
-                <label id="error">{this.state.error}</label>
-              </div>
             </form>
           </div>
         </div>
@@ -90,4 +82,17 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+const mapStateToProps = state => {
+  return {
+    authError: state.auth.authError
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    register: newUser => dispatch(register(newUser))
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);
