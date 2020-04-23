@@ -8,7 +8,8 @@ class Login extends Component {
     email: "",
     password: "",
     repassword: "",
-    username: ""
+    username: "",
+    type: "2"
   };
   handleChange = e => {
     this.setState({
@@ -21,6 +22,10 @@ class Login extends Component {
   };
 
   render() {
+    const {authError} = this.props;
+    if (!authError) {
+      return <Redirect to="/"/>
+    }
     return (
       <div className="container signin-form">
         <div className="card yellow darken-3 z-depth-2 inputs">
@@ -61,7 +66,6 @@ class Login extends Component {
                     type="checkbox"
                     className="filled-in"
                     required
-                    oninvalid="this.setCustomValidity('You should agree to terms of services to proceed!')"
                   />
                   <span>
                     <a id="tos" href="http://www.google.com">
@@ -74,6 +78,9 @@ class Login extends Component {
                 <button className="btn blue darken-3 z-depth-3">
                   Register
                 </button>
+              </div>
+              <div className="center-align">
+                <p className="pink-text">{authError}</p>
               </div>
             </form>
           </div>
