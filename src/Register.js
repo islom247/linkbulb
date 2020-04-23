@@ -22,10 +22,10 @@ class Login extends Component {
   };
 
   render() {
-    const {authError} = this.props;
-    if (!authError) {
-      return <Redirect to="/"/>
-    }
+    const {regError} = this.props;
+    // if (!authError) {
+    //   return <Redirect to="/"/>
+    // }
     return (
       <div className="container signin-form">
         <div className="card yellow darken-3 z-depth-2 inputs">
@@ -80,7 +80,7 @@ class Login extends Component {
                 </button>
               </div>
               <div className="center-align">
-                <p className="pink-text">{authError}</p>
+                <p className="pink-text">{regError}</p>
               </div>
             </form>
           </div>
@@ -91,7 +91,7 @@ class Login extends Component {
 }
 const mapStateToProps = state => {
   return {
-    authError: state.auth.authError
+    regError: state.auth.regError
   };
 };
 const mapDispatchToProps = dispatch => {

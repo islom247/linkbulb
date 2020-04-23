@@ -139,3 +139,18 @@ textarea {
   margin-top: 30px !important;
   font-size: 18px;
 }
+#expire {
+  align-content: center;
+  color: black;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  width: 20%;
+}
+.shorten-button {
+  margin-top: 15px;
+}
+td {
+  overflow: hidden;
+  max-width: 100px;
+  text-overflow: initial;
+}

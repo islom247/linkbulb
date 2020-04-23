@@ -33,13 +33,14 @@ export const register = newUser => {
                 "&REPASSWORD=" + newUser.repassword +
                 "&TYPE=" + newUser.type)
             .then((response) => {
-                console.log(response);
-                const error = response.data.ERROR;
-                const success = response.data.SUCCESS;
-                const register_result = response.data.REGISTER_RESULT;
-                if (error) {
-                    dispatch({type: "REGISTER_ERROR", error: error});
-                } else if (success) {
+                console.log(response.data);
+                const res_code = response.data.RESULT_CODE;
+                const res_mes = response.data.RESULT_MESSAGE;
+                if (res_code === 0) {
+                    dispatch({type: "REGISTER_ERROR",  error: res_mes});
+                } else if (res_code === -1) {
+                    dispatch({type: "REGISTER_CONNECTION_ERROR", error: "connection problems"});
+                } else if (res_code === 1) {
                     dispatch({type: "REGISTER_SUCCESS"});
                 }
             })

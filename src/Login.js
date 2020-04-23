@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {login} from "./store/actions/authActions";
 import {Redirect} from "react-router-dom";
-import axios from "axios";
 import "./styles.css";
 
 class Login extends Component {
@@ -22,9 +21,9 @@ class Login extends Component {
 
     render() {
         const {authError} = this.props;
-        if (!authError) {
-            return <Redirect to="/"/>
-        }
+        // if (!authError) {
+        //     return <Redirect to="/"/>
+        // }
         return (
             <div className="container signin-form">
                 <div className="card yellow darken-3 z-depth-2 inputs">
