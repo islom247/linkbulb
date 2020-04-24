@@ -1,15 +1,13 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
-import Cookies from 'js-cookie';
 import {login} from "./store/actions/authActions";
 import "./styles.css";
 
 class Login extends Component {
     state = {
         email: "",
-        password: "",
-        cookie: new Cookies()
+        password: ""
     };
     handleChange = e => {
         this.setState({
@@ -18,7 +16,6 @@ class Login extends Component {
     };
     handleSubmit = e => {
         e.preventDefault();
-        //const cookie = new Cookies();
         this.props.login(this.state);
     };
 
