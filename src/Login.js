@@ -1,13 +1,15 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {login} from "./store/actions/authActions";
 import {Redirect} from "react-router-dom";
+import Cookies from 'js-cookie';
+import {login} from "./store/actions/authActions";
 import "./styles.css";
 
 class Login extends Component {
     state = {
         email: "",
-        password: ""
+        password: "",
+        cookie: new Cookies()
     };
     handleChange = e => {
         this.setState({
@@ -16,14 +18,16 @@ class Login extends Component {
     };
     handleSubmit = e => {
         e.preventDefault();
+        //const cookie = new Cookies();
         this.props.login(this.state);
     };
 
     render() {
-        const {authError} = this.props;
-        // if (!authError) {
-        //     return <Redirect to="/"/>
-        // }
+        console.log("cookie value: ", Cookies.get("SKEY"));
+        const {authError, SKEY} = this.props;
+        if (SKEY) {
+            return <Redirect to="/"/>
+        }
         return (
             <div className="container signin-form">
                 <div className="card yellow darken-3 z-depth-2 inputs">
@@ -49,7 +53,7 @@ class Login extends Component {
                                 <button className="btn blue darken-3 z-depth-3">Log In</button>
                             </div>
                             <div className="center-align">
-                                <p className="pink-text">{authError}</p>
+                                <p className="pink-text">{authError ? authError : ""}</p>
                             </div>
                         </form>
                     </div>
@@ -61,12 +65,13 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-        authError: state.auth.authError
+        authError: state.auth.authError,
+        SKEY: state.auth.SKEY
     };
 };
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        login: credentials => dispatch(login(credentials))
+        login: (credentials) => dispatch(login(credentials))
     };
 };
 export default connect(

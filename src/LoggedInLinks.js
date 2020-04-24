@@ -1,16 +1,24 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import {connect} from "react-redux";
+import {logout} from "./store/actions/authActions";
 
-const LoggeddInLinks = () => {
-  return (
-    <ul className="right">
-      <li>
-        <a href="">Log Out</a>
-      </li>
-      <li>
-        <NavLink to="/history">History</NavLink>
-      </li>
-    </ul>
-  );
+const LoggeddInLinks = (props) => {
+    return (
+        <ul className="right">
+            <li>
+                {/*<NavLink to="/login" onClick>Log Out</NavLink>*/}
+                <a onClick={props.logout}>Log Out</a>
+            </li>
+            <li>
+                <NavLink to="/history">History</NavLink>
+            </li>
+        </ul>
+    );
 };
-export default LoggeddInLinks;
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => dispatch(logout())
+    };
+};
+export default connect(null, mapDispatchToProps)(LoggeddInLinks);

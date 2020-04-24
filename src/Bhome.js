@@ -1,7 +1,9 @@
 import React, {Component} from "react";
-import "./styles.css";
 import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
+import Cookies from "js-cookie";
 import {shorten} from "./store/actions/linkActions";
+import "./styles.css";
 
 class Bhome extends Component {
     state = {
@@ -20,6 +22,11 @@ class Bhome extends Component {
     };
 
     render() {
+        const {authError, regError, SKEY} = this.props;
+        console.log("skey is:", SKEY);
+        if (!SKEY) {
+            return <Redirect to="/login"/>
+        }
         return (
             <div className="container url-input">
                 <form onSubmit={this.handleSubmit} className="form" autoComplete="off">
@@ -62,12 +69,17 @@ class Bhome extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        SKEY: state.auth.SKEY
+    }
+}
 const mapDispatchToProps = dispatch => {
     return {
         shorten: link => dispatch(shorten(link))
     };
 };
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(Bhome);
