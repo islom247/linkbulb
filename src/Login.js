@@ -23,7 +23,7 @@ class Login extends Component {
     };
 
     render() {
-        console.log("cookie value: ", Cookies.get("SKEY"));
+        console.log("cookie value: ", localStorage.getItem("SKEY"));
         const {authError, SKEY} = this.props;
         if (SKEY) {
             return <Redirect to="/"/>

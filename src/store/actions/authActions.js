@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from "js-cookie";
 
 export const login = (credentials) => {
     return (dispatch, getState) => {
@@ -14,7 +13,7 @@ export const login = (credentials) => {
                 if (result === 0) {
                     dispatch({type: "LOGIN_ERROR", error: "wrong username or password"});
                 } else if (result === 1) {
-                    getState().cookie.set("SKEY", SKEY, {expires: 30});
+                    localStorage.setItem("SKEY", SKEY, {expires: 30});
                     dispatch({type: "LOGIN_SUCCESS", SKEY: SKEY});
                 } else {
                     dispatch({type: "LOGIN_CONNECTION_ERROR", error: "connection problems"});
@@ -32,7 +31,7 @@ export const login = (credentials) => {
 export const logout = () => {
     return (dispatch, getState) => {
         console.log(getState().auth.SKEY);
-        Cookies.remove("SKEY");
+        localStorage.clear();
         dispatch({type: "LOGOUT", authError: null, regError: null, SKEY: null});
     }
 }
