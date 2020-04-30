@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const shorten = link => {
     return (dispatch, getState) => {
-        const SKEY = getState.auth.SKEY;
+        const SKEY = getState().auth.SKEY;
         axios
             .get("http://25.136.105.60:8080/REST_TEST_API/rest/"+ (SKEY != null && link.custom ? "C" : "") +"C?R=" +
                 "http://" + link.url + (SKEY != null && link.custom ? "&L=" + link.custom : "") +(SKEY == null ? "" : "&S=" + SKEY))
@@ -33,7 +33,7 @@ export const getAllLinks = () => {
                 .get("http://25.136.105.60:8080/REST_TEST_API/rest/ALLLS?S=" + SKEY)
                 .then((response) => {
                     const res_code = response.data.RESULT;
-                    if (res_code == 0) {
+                    if (res_code === 0) {
                         dispatch({type: "GET_ALL_LINKS_ERROR", get_all_links_error: "Connection problems."});
                     } else {
                         const all_links = response.data.ALL_LINKS;

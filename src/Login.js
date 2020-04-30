@@ -21,7 +21,8 @@ class Login extends Component {
 
     render() {
         console.log("cookie value: ", localStorage.getItem("SKEY"));
-        const {authError, SKEY} = this.props;
+        const {authError} = this.props;
+        const SKEY = localStorage.getItem("SKEY");
         if (SKEY) {
             return <Redirect to="/"/>
         }
@@ -36,7 +37,7 @@ class Login extends Component {
                         >
                             <div className="input-field">
                                 <i className="material-icons prefix">person</i>
-                                <input type="email" id="email" onChange={this.handleChange}/>
+                                <input type="text" id="email" onChange={this.handleChange}/>
                             </div>
                             <div className="input-field">
                                 <i className="material-icons prefix">lock</i>

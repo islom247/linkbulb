@@ -7,6 +7,8 @@ class History extends Component {
     }
 
     render() {
+        const {all_links} = this.props;
+        console.log(all_links);
         return (
             <div className="center-align">
                 <table className="centered striped">
@@ -49,7 +51,11 @@ class History extends Component {
         );
     }
 }
-
+const mapStateToProps = (state) => {
+    return {
+        all_links: state.link.all_links
+    };
+}
 const mapDispatchToProps = (dispatch) => {
     return {
         getAllLinks: () => dispatch(getAllLinks())
