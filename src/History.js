@@ -1,6 +1,11 @@
 import React, {Component} from "react";
+import {getAllLinks} from "./store/actions/linkActions";
 
 class History extends Component {
+    componentDidMount() {
+        this.props.getAllLinks();
+    }
+
     render() {
         return (
             <div className="center-align">
@@ -45,4 +50,9 @@ class History extends Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getAllLinks: () => dispatch(getAllLinks())
+    }
+}
 export default History;

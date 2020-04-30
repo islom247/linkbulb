@@ -47,11 +47,31 @@ export const register = newUser => {
             .then((response) => {
                 console.log(response.data);
                 const res_code = response.data.RESULT_CODE;
+                const error_code = response.data.ERROR_CODE;
                 const res_mes = response.data.RESULT_MESSAGE;
+                let error = "";
                 if (res_code === 0) {
-                    dispatch({type: "REGISTER_ERROR", error: res_mes});
+                    switch (error_code) {
+                        case "1":
+                            error = "Short username! Username should be at least 6 characters."; break;
+                        case "2":
+                            error = "Invalid email!"; break;
+                        case "3":
+                            error = "Short password! Password should be at least 4 characters."; break;
+                        case "4":
+                            error = "Long password! Password can be at most 16 characters."; break;
+                        case "5":
+                            error = "Passwords do not match! Re-enter passwords."; break;
+                        case "6":
+                            error = "Username taken! Choose some other username."; break;
+                        case "7":
+                            error = "Email already in use!"; break;
+                        default:
+                            error = "Connection problems."; break;
+                    }
+                    dispatch({type: "REGISTER_ERROR", error: error});
                 } else if (res_code === -1) {
-                    dispatch({type: "REGISTER_CONNECTION_ERROR", error: "connection problems"});
+                    dispatch({type: "REGISTER_CONNECTION_ERROR", error: "Couldn't connect to the database."});
                 } else if (res_code === 1) {
                     dispatch({type: "REGISTER_SUCCESS"});
                 }
