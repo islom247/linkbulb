@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
 import {getAllLinks} from "./store/actions/linkActions";
 
 class History extends Component {
@@ -7,8 +8,9 @@ class History extends Component {
     }
 
     render() {
-        const {all_links} = this.props;
-        console.log(all_links);
+        const {all_links, allstate} = this.props;
+        console.log("all links: ", all_links);
+        console.log(allstate);
         return (
             <div className="center-align">
                 <table className="centered striped">
@@ -53,7 +55,8 @@ class History extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        all_links: state.link.all_links
+        all_links: state.link.all_links,
+        allstate: state
     };
 }
 const mapDispatchToProps = (dispatch) => {
@@ -61,4 +64,4 @@ const mapDispatchToProps = (dispatch) => {
         getAllLinks: () => dispatch(getAllLinks())
     }
 }
-export default History;
+export default connect(mapStateToProps, mapDispatchToProps)(History);

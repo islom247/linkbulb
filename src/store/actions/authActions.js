@@ -16,7 +16,7 @@ export const login = (credentials) => {
                     localStorage.setItem("SKEY", SKEY, {expires: 30});
                     dispatch({type: "LOGIN_SUCCESS", SKEY: SKEY});
                 } else {
-                    dispatch({type: "LOGIN_CONNECTION_ERROR", error: "Connection problems"});
+                    dispatch({type: "LOGIN_ERROR", error: "Connection problems"});
                 }
             })
             .catch(err => {
@@ -37,10 +37,10 @@ export const login_via_session = (session_key) => {
                 const res_code = response.data.LOGIN_RESULT;
                 if (res_code === 0) {
                     dispatch({type: "LOGIN_VIA_SESSION_ERROR", error: "Wrong session key!"});
-                } else if (res_code == 1) {
+                } else if (res_code === 1) {
                     dispatch({type: "LOGIN_VIA_SESSION_SUCCESS", username: response.data.USERNAME});
                 } else {
-                    dispatch({type: "LOGIN_VIA_SESSION_CONNECTION_ERROR", error: "Connection problems"});
+                    dispatch({type: "LOGIN_VIA_SESSION_ERROR", error: "Connection problems"});
                 }
             })
             .catch(err => {
@@ -95,7 +95,7 @@ export const register = newUser => {
                     }
                     dispatch({type: "REGISTER_ERROR", error: error});
                 } else if (res_code === -1) {
-                    dispatch({type: "REGISTER_CONNECTION_ERROR", error: "Couldn't connect to the database."});
+                    dispatch({type: "REGISTER_ERROR", error: "Couldn't connect to the database."});
                 } else if (res_code === 1) {
                     dispatch({type: "REGISTER_SUCCESS"});
                 }

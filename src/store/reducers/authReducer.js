@@ -1,7 +1,6 @@
 const initState = {
     authError: null,
     regError: null,
-    authViaSessionError: null,
     SKEY: null
 };
 const authReducer = (state = initState, action) => {
@@ -19,11 +18,6 @@ const authReducer = (state = initState, action) => {
                 ...state,
                 authError: action.error
             };
-        case "LOGIN_CONNECTION_ERROR":
-            return {
-                ...state,
-                authError: action.error
-            }
         case "LOGIN_VIA_SESSION_SUCCESS":
             return {
                 ...state,
@@ -32,11 +26,6 @@ const authReducer = (state = initState, action) => {
                 username: action.username
             };
         case "LOGIN_VIA_SESSION_ERROR":
-            return {
-                ...state,
-                authViaSessionError: action.error
-            };
-        case "LOGIN_VIA_SESSION_CONNECTION_ERROR":
             return {
                 ...state,
                 authViaSessionError: action.error
@@ -56,11 +45,6 @@ const authReducer = (state = initState, action) => {
                 SKEY: ""
             }
         case "REGISTER_ERROR":
-            return {
-                ...state,
-                regError: action.error
-            }
-        case "REGISTER_CONNECTION_ERROR":
             return {
                 ...state,
                 regError: action.error

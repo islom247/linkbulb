@@ -21,13 +21,14 @@ export const shorten = link => {
                     dispatch({type: "LINK_SHORTEN_SUCCESS", error: null, link_info: link_info});
                 }
             }).catch((err) => {
-                dispatch({type: "LINK_SHORTEN_ERROR", err});
+                dispatch({type: "LINK_SHORTEN_ERROR", error: JSON.stringify(err)});
         });
     }
 };
 export const getAllLinks = () => {
     return (dispatch, getState) => {
-        const SKEY = getState.auth.SKEY;
+        const SKEY = getState().auth.SKEY;
+        console.log("skey in linkreducer: ", SKEY);
         if (SKEY) {
             axios
                 .get("http://25.136.105.60:8080/REST_TEST_API/rest/ALLLS?S=" + SKEY)
@@ -40,10 +41,10 @@ export const getAllLinks = () => {
                         dispatch({type: "GET_ALL_LINKS_SUCCESS", all_links: all_links});
                     }
                 }).catch((err) => {
-                dispatch({type: "LINK_SHORTEN_ERROR", err});
+                dispatch({type: "GET_ALL_LINKS_ERROR", error: JSON.stringify(err)});
             });
         } else {
-
+            dispatch({type: "GET_ALL_LINKS_ERROR", get_all_links_error: "Not a registered user."});
         }
     }
 }
