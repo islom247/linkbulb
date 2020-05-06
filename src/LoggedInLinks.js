@@ -7,11 +7,14 @@ const LoggeddInLinks = (props) => {
     return (
         <ul className="right">
             <li>
-                {/*<NavLink to="/login" onClick>Log Out</NavLink>*/}
-                <a onClick={props.logout}>Log Out</a>
+                <NavLink to="/history">History</NavLink>
             </li>
             <li>
-                <NavLink to="/history">History</NavLink>
+                <NavLink to="/linkanalytics">Link Analytics</NavLink>
+            </li>
+            <li>
+                {/*<NavLink to="/login" onClick>Log Out</NavLink>*/}
+                <a onClick={props.logout}>Log Out</a>
             </li>
         </ul>
     );

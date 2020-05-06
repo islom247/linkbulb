@@ -6,6 +6,7 @@ import Register from "./Register";
 import Bhome from "./Bhome";
 import Ahome from "./Ahome";
 import History from "./History";
+import LinkAnalytics from "./LinkAnalytics";
 
 import "./styles.css";
 
@@ -21,6 +22,7 @@ class App extends Component {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/history" component={History} />
+            <Route path="/linkanalytics" component={LinkAnalytics} />
           </Switch>
         </div>
       </BrowserRouter>

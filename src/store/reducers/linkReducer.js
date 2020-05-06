@@ -1,5 +1,6 @@
 const initState = {
-    linkError: null
+    linkError: null,
+    link_analytics: null
 };
 const linkReducer = (state = initState, action) => {
     switch (action.type) {
@@ -11,6 +12,7 @@ const linkReducer = (state = initState, action) => {
         case "LINK_SHORTEN_SUCCESS":
             return {
                 ...state,
+                linkError: action.error,
                 link_info: action.link_info
             };
         case "GET_ALL_LINKS_ERROR":
@@ -23,6 +25,25 @@ const linkReducer = (state = initState, action) => {
                 ...state,
                 all_links: action.all_links
             };
+        case "GLA_ERROR":
+
+            return {
+                ...state,
+                gla_error: action.error
+            }
+        case "GLA_SUCCESS":
+            const newInfo = {
+                LID: action.LID,
+                click_dates: action.click_dates,
+                last_access: action.last_access,
+                total_clicks: action.total_clicks
+            };
+            const temp = state.link_analytics ? [...state.link_analytics.filter(item => item.LID !== action.LID), newInfo] : [newInfo];
+            console.log("temp:", temp);
+            return {
+                ...state,
+                link_analytics: temp
+            }
         default:
             return state;
     }

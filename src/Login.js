@@ -20,7 +20,6 @@ class Login extends Component {
     };
 
     render() {
-        console.log("cookie value: ", localStorage.getItem("SKEY"));
         const {authError} = this.props;
         const SKEY = localStorage.getItem("SKEY");
         if (SKEY) {
