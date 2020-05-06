@@ -11,6 +11,7 @@ const Navbar = props => {
       <nav className="nav-wrapper yellow darken-3">
         <div className="container">
           <Link to="/" className="brand-logo white-text">
+              <img src={require('./linkbulb.png')} className="logo center"/>
             LinkBulb
           </Link>
           {links}

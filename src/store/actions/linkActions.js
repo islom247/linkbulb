@@ -48,15 +48,11 @@ export const getAllLinks = () => {
             axios
                 .get("http://25.136.105.60:8080/REST_TEST_API/rest/ALLLS/G?S=" + SKEY)
                 .then((response) => {
-                    const res_code = response.data.RESULT;
                     const all_links = response.data.ALL_LINKS;
+                    all_links.forEach(async item => {
+                        await dispatch(getLinkAnalytics(item.LID));
+                    })
                     dispatch({type: "GET_ALL_LINKS_SUCCESS", all_links: all_links});
-                    if (res_code === 0) {
-                        dispatch({type: "GET_ALL_LINKS_ERROR", get_all_links_error: "Connection problems."});
-                    } else {
-                        const all_links = response.data.ALL_LINKS;
-                        dispatch({type: "GET_ALL_LINKS_SUCCESS", all_links: all_links});
-                    }
                 }).catch((err) => {
                 dispatch({type: "GET_ALL_LINKS_ERROR", error: JSON.stringify(err)});
             });

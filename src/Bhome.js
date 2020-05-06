@@ -80,8 +80,8 @@ class Bhome extends Component {
                         <div className="card grey lighten-1 link_info">
                             <div className="card-content black-text">
                                 <span className="card-title">Shortened link information</span>
-                                <p>Your link: <a href={"" + link_info.link}>{"" + link_info.link}</a></p>
-                                <p>Your short link: <a href={"" + link_info.short_link}>{"" + link_info.short_link}</a>
+                                <p>Your link: <a href={redirect + link_info.short_link} target="_blank">{"" + link_info.link}</a></p>
+                                <p>Your short link: <a href={redirect + link_info.short_link} target="_blank">{"linkbulb.com/" + link_info.short_link}</a>
                                 </p>
                                 <p>Your expire link: <a
                                     href={"" + link_info.expire_link}>{"" + link_info.expire_link}</a></p>
