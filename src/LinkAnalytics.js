@@ -19,11 +19,13 @@ class LinkAnalytics extends Component {
             const short_link = all_links.filter(item1 => item1.LID === item.LID)[0].SHORT_LINK;
             const spec = link_analytics.filter(item1 => item1.LID === item.LID)[0];
             const count = spec && spec.total_clicks;
+            const last_access = spec && spec.last_access;
             console.log("link in gla is:", count);
             console.log("item is:", link_analytics.filter(item1 => (item1 && item1.LID === item.LID)));
             info = [...info, {
                 short_link: short_link,
-                click_count: count
+                click_count: count,
+                last_access: last_access
             }];
             this.setState({labels: [...this.state.labels, "" + short_link]});
             this.setState({data: [...this.state.data, count]});
@@ -47,15 +49,17 @@ class LinkAnalytics extends Component {
         return (
             <div className="center linkanalytics">
                 {this.props.link_analytics ?
-                    <div className="bar"><Bar data={chartData} options={{
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
-                        }
-                    }}/></div>
+                    <div className="bar">
+                        <Bar data={chartData} options={{
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }}/>
+                    </div>
                     : <p>Loading...</p>}
             </div>
         );

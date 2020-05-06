@@ -14,7 +14,7 @@ const LoggeddInLinks = (props) => {
             </li>
             <li>
                 {/*<NavLink to="/login" onClick>Log Out</NavLink>*/}
-                <a onClick={props.logout}>Log Out</a>
+                <a onClick={props.logout} href="#/">Log Out</a>
             </li>
         </ul>
     );

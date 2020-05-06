@@ -28,7 +28,7 @@ class History extends Component {
                         <th>Expiration date</th>
                         <th>Expire Link</th>
                         <th>Label</th>
-                        <th>Is active(1: yes)</th>
+                        <th>Is active</th>
                     </tr>
                     </thead>
 
@@ -42,7 +42,7 @@ class History extends Component {
                                 <td>{link.EXPIRE_DATE}</td>
                                 <td>{link.EXPIRE_LINK}</td>
                                 <td>{link.LABEL}</td>
-                                <td>{link.IS_ACTIVE}</td>
+                                <td>{link.IS_ACTIVE === 1 ? "YES" : "NO"}</td>
                             </tr>
                         )
                     })}
