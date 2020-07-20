@@ -1,4 +1,4 @@
 # LinkBulb
 Term Project for
-CS 443 - Cloud Computing and Mobile Applications
-Frontend for Web Application
+<br>CS 443 - Cloud Computing and Mobile Applications
+<br>Frontend for Web Application
