@@ -9,7 +9,7 @@
   ],
   "main": "src/index.js",
   "dependencies": {
-    "axios": "0.19.2",
+    "axios": "1.6.0",
     "calendarium": "^0.3.3",
     "chart.js": "^2.9.3",
     "react": "16.12.0",
